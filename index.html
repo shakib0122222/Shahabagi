@@ -1,247 +1,157 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শাহবাগী ক্যালকুলেটর</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Noto Serif Bengali', serif;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 400%;
-            animation: colorShift 15s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
-            overflow-y: auto;
-        }
-        @keyframes colorShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 700px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.8s ease-out;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .question {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeInQuestion 0.5s forwards;
-        }
-        @keyframes fadeInQuestion {
-            to { opacity: 1; }
-        }
-        .buttons button {
-            padding: 12px 30px;
-            margin: 10px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            background: #fff;
-            color: #333;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        .buttons button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            background: #ffeb3b;
-        }
-        #yes-btn { background: #4caf50; color: white; }
-        #no-btn { background: #f44336; color: white; }
-        .progress-circle {
-            margin: 20px auto;
-            width: 100px;
-            height: 100px;
-            position: relative;
-        }
-        .progress-circle svg {
-            transform: rotate(-90deg);
-        }
-        .progress-circle circle {
-            fill: none;
-            stroke: #fff;
-            stroke-width: 10;
-            stroke-dasharray: 283;
-            stroke-dashoffset: 283;
-            transition: stroke-dashoffset 0.5s ease;
-        }
-        .progress-circle .progress-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1rem;
-        }
-        .result {
-            display: none;
-            margin-top: 30px;
-            font-size: 1.3rem;
-            animation: fadeInResult 1s ease;
-        }
-        @keyframes fadeInResult {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .share-btn {
-            display: inline-block;
-            background: #3b5998;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: transform 0.3s;
-        }
-        .share-btn:hover {
-            transform: scale(1.1);
-        }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-        }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .question { font-size: 1.1rem; }
-            .buttons button { font-size: 1rem; padding: 10px 20px; }
-            .progress-circle { width: 80px; height: 80px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>শাহাবাগী স্কোর ক্যালকুলেটর 😎</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #ff7b7b, #ffd36b);
+    font-family: 'Comic Sans MS', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    transition: 0.5s;
+  }
+  h1 {
+    color: #ff4c4c;
+  }
+  .question {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  button {
+    background: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: #ff2a2a;
+  }
+  .result {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .progress {
+    height: 10px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 10px;
+    background: #ff4c4c;
+    width: 0;
+    transition: width 0.5s ease;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>🗣️ শাহবাগী ক্যালকুলেটর - তুমি কতটা শাহবাগী? 😎</h1>
-        <div class="question" id="question">প্রশ্ন লোড হচ্ছে...</div>
-        <div class="buttons">
-            <button id="yes-btn" onclick="answer('yes')">হ্যাঁ</button>
-            <button id="no-btn" onclick="answer('no')">না</button>
-        </div>
-        <div class="progress-circle">
-            <svg width="100" height="100">
-                <circle cx="50" cy="50" r="45" id="progress-bar"></circle>
-            </svg>
-            <div class="progress-text" id="progress-text">0%</div>
-        </div>
-        <div class="result" id="result"></div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script>
-        const questions = [
-            "রবীন্দ্রনাথের গান শুনে চোখে পানি চলে আসে?",
-            "শাহবাগে মিছিলে গিয়ে চিৎকার করেছেন?",
-            "সোশ্যাল মিডিয়ায় #WeAreSecular পোস্ট করেছেন?",
-            "কফি শপে বসে 'সেকুলারিজম' নিয়ে তর্ক করেন?",
-            "ধর্ম আর পলিটিক্স মেশানো দেখলে গা জ্বলে?",
-            "BBC/Al Jazeera ফলো করেন নিয়মিত?",
-            "ফ্রেন্ড সার্কেলে সবাই 'প্রোগ্রেসিভ' টাইপ?",
-            "শাহবাগে গিয়ে স্লোগান দিতে মজা লাগে?",
-            "বইমেলায় গিয়ে বই কিনেন, পড়েন না?",
-            "ফেসবুকে 'জঙ্গি' শব্দটা ব্যবহার করেছেন?"
-        ];
+<div class="container" id="quiz">
+  <h1>শাহাবাগী স্কোর ক্যালকুলেটর 😎</h1>
+  <div class="progress"><div class="progress-bar" id="progress"></div></div>
+  <div id="question-container"></div>
+</div>
 
-        let currentQuestion = 0;
-        let score = 0;
-        const totalQuestions = questions.length;
-        let clickSound = new Audio('https://freesound.org/data/previews/171/171671_2437358-lq.mp3');
+<script>
+const quizData = [
+  {
+    question: "তুমি কি প্রতিদিন চা খাও?",
+    answers: [
+      { text: "হ্যাঁ, না খেলে দিনই চলে না!", score: 10 },
+      { text: "মাঝে মাঝে খাই 😌", score: 5 },
+      { text: "না, আমি কফি পছন্দ করি ☕", score: 2 }
+    ]
+  },
+  {
+    question: "তুমি কি বাসে উঠে ভাড়া কম দাও? 😏",
+    answers: [
+      { text: "না না! আমি ভদ্রমানুষ 😇", score: 10 },
+      { text: "হিসাব ঠিক রাখি 😎", score: 5 },
+      { text: "কখনো কখনো হয় 😅", score: 2 }
+    ]
+  },
+  {
+    question: "বন্ধুদের সাথে আড্ডায় কে বেশি কথা বলে?",
+    answers: [
+      { text: "আমিই রাজা! 👑", score: 10 },
+      { text: "সমান সমান 🤝", score: 5 },
+      { text: "চুপচাপ শুনি 😶", score: 2 }
+    ]
+  },
+  {
+    question: "তুমি কি সময়মতো কাজ শেষ করো?",
+    answers: [
+      { text: "হ্যাঁ, আমি খুব সিরিয়াস 😤", score: 10 },
+      { text: "কখনো হ্যাঁ কখনো না 😅", score: 5 },
+      { text: "কাল করব কাল করব 😴", score: 2 }
+    ]
+  },
+  {
+    question: "তুমি কি রবিবারে ঘুমাও দুপুর পর্যন্ত? 😴",
+    answers: [
+      { text: "অবশ্যই! ওটাই তো সুখ!", score: 10 },
+      { text: "কখনো কখনো 😌", score: 5 },
+      { text: "না, আমি কর্মঠ মানুষ 😎", score: 2 }
+    ]
+  }
+];
 
-        function showQuestion() {
-            if (currentQuestion < totalQuestions) {
-                document.getElementById('question').innerText = `প্রশ্ন ${currentQuestion + 1}/${totalQuestions}: ${questions[currentQuestion]}`;
-                updateProgress();
-            } else {
-                showResult();
-            }
-        }
+let currentQuestion = 0;
+let totalScore = 0;
 
-        function updateProgress() {
-            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
-            const circle = document.getElementById('progress-bar');
-            const offset = 283 - (283 * progress) / 100;
-            circle.style.strokeDashoffset = offset;
-            document.getElementById('progress-text').innerText = `${Math.round(progress)}%`;
-        }
+const container = document.getElementById("question-container");
+const progressBar = document.getElementById("progress");
 
-        function answer(response) {
-            clickSound.play();
-            if (response === 'yes') {
-                score += Math.floor(Math.random() * 10) + 5; // Random 5-15
-            }
-            currentQuestion++;
-            showQuestion();
-        }
+function showQuestion() {
+  progressBar.style.width = ((currentQuestion / quizData.length) * 100) + "%";
+  const q = quizData[currentQuestion];
+  container.innerHTML = `
+    <div class="question">${q.question}</div>
+    ${q.answers.map(a => `<button onclick="selectAnswer(${a.score})">${a.text}</button>`).join("")}
+  `;
+}
 
-        function showResult() {
-            const percentage = Math.min(100, (score / (totalQuestions * 10)) * 100);
-            let level;
-            if (percentage >= 90) {
-                level = "হার্ডকোর শাহবাগী – তুমি তো শাহবাগের রাজা! 👑";
-            } else if (percentage >= 70) {
-                level = "সলিড প্রোগ্রেসিভ – শাহবাগে তোমার জায়গা পাক্কা! 😎";
-            } else if (percentage >= 50) {
-                level = "মিড-লেভেল লিবারেল – আরেকটু জোর দাও! 💪";
-            } else if (percentage >= 30) {
-                level = "বিগিনার শাহবাগী – পটেনশিয়াল আছে, চালিয়ে যাও! 😏";
-            } else {
-                level = "নিউট্রাল – শাহবাগে একবার ঘুরে এসো! 😜";
-            }
+function selectAnswer(score) {
+  totalScore += score;
+  currentQuestion++;
+  if (currentQuestion < quizData.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
 
-            document.getElementById('question').style.display = 'none';
-            document.getElementById('yes-btn').style.display = 'none';
-            document.getElementById('no-btn').style.display = 'none';
-            document.getElementById('progress-circle').style.display = 'none';
-            document.getElementById('result').style.display = 'block';
-            document.getElementById('result').innerHTML = `
-                🎉 তোমার শাহবাগী স্কোর: ${percentage.toFixed(1)}% <br>
-                লেভেল: ${level} <br>
-                <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://shahbaghi-calculator.example.com&quote=আমি ${percentage.toFixed(1)}% শাহবাগী! 😎 তুমি কত? #ShahbaghiCalculator" target="_blank">ফেসবুকে শেয়ার করো</a>
-            `;
+function showResult() {
+  progressBar.style.width = "100%";
+  let msg = "";
+  if (totalScore >= 45) msg = "তুমি আসলেই শাহাবাগের বীর! 🔥";
+  else if (totalScore >= 25) msg = "তুমি মাঝারি শাহাবাগী 😆";
+  else msg = "তুমি এখনো ট্রেনিংয়ে আছো! 😂";
+  container.innerHTML = `<div class="result">${msg}<br><br>তোমার স্কোর: ${totalScore} / ${quizData.length * 10}</div>
+  <button onclick="location.reload()">আবার চেষ্টা করো 🔁</button>`;
+}
 
-            // Confetti animation
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
+showQuestion();
+</script>
 
-        // Initialize
-        showQuestion();
-    </script>
 </body>
 </html>
