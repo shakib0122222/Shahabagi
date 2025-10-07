@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAKIB SMS BOMBER</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@404&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
         :root {
             --primary-color: #6a0dad; /* Purple for main elements */
@@ -23,10 +23,10 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px; /* Reduced padding for mobile */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Align to top for scrolling on mobile */
             min-height: 100vh;
             background-color: var(--background-color);
             color: var(--text-color);
@@ -38,16 +38,18 @@
             background-color: var(--card-background);
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            padding: 25px; /* Reduced padding */
             width: 100%;
-            max-width: 450px;
+            max-width: 400px; /* Max-width for mobile-friendliness */
             text-align: center;
             position: relative;
             overflow: hidden;
+            margin-top: 15px; /* Add some top margin */
+            margin-bottom: 15px; /* Add some bottom margin */
         }
 
         .header-title {
-            font-size: 28px;
+            font-size: 24px; /* Slightly smaller for mobile */
             font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 5px;
@@ -55,19 +57,19 @@
         }
 
         .header-subtitle {
-            font-size: 14px;
+            font-size: 13px; /* Slightly smaller */
             color: var(--light-text-color);
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* Reduced margin */
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px; /* Reduced margin */
             text-align: left;
         }
 
         label {
             display: block;
-            font-size: 15px;
+            font-size: 14px; /* Slightly smaller */
             font-weight: 500;
             margin-bottom: 8px;
             color: var(--text-color);
@@ -75,10 +77,10 @@
 
         input[type="text"], input[type="number"] {
             width: calc(100% - 24px);
-            padding: 12px;
+            padding: 10px; /* Reduced padding */
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px; /* Slightly smaller */
             color: var(--text-color);
             background-color: #fdfdfd;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -96,7 +98,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             background-color: #fdfdfd;
-            padding: 0 12px;
+            padding: 0 10px; /* Reduced padding */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .input-with-label:focus-within {
@@ -104,23 +106,22 @@
             box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
         }
         .input-with-label img {
-            width: 20px;
+            width: 18px; /* Slightly smaller flag */
             height: auto;
-            margin-right: 10px;
+            margin-right: 8px; /* Reduced margin */
         }
         .input-with-label input {
             flex-grow: 1;
             border: none;
-            padding: 12px 0;
+            padding: 10px 0; /* Reduced padding */
             background: transparent;
         }
         .input-with-label input:focus {
             box-shadow: none;
         }
 
-
         .slider-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* Reduced margin */
         }
 
         .slider-label {
@@ -128,7 +129,7 @@
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 8px;
-            font-size: 15px;
+            font-size: 14px; /* Slightly smaller */
             font-weight: 500;
             color: var(--text-color);
         }
@@ -136,13 +137,13 @@
         .slider-value {
             font-weight: 600;
             color: var(--primary-color);
-            font-size: 18px;
+            font-size: 16px; /* Slightly smaller */
         }
 
         input[type="range"] {
             width: 100%;
             -webkit-appearance: none;
-            height: 8px;
+            height: 7px; /* Slightly thinner */
             background: var(--border-color);
             border-radius: 5px;
             outline: none;
@@ -153,8 +154,8 @@
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 22px;
-            height: 22px;
+            width: 20px; /* Slightly smaller thumb */
+            height: 20px; /* Slightly smaller thumb */
             border-radius: 50%;
             background: var(--primary-color);
             cursor: grab;
@@ -162,8 +163,8 @@
         }
 
         input[type="range"]::-moz-range-thumb {
-            width: 22px;
-            height: 22px;
+            width: 20px; /* Slightly smaller thumb */
+            height: 20px; /* Slightly smaller thumb */
             border-radius: 50%;
             background: var(--primary-color);
             cursor: grab;
@@ -172,23 +173,23 @@
 
         .action-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 10px; /* Reduced gap */
+            margin-top: 20px; /* Reduced margin */
         }
 
         button {
             flex: 1;
-            padding: 14px 20px;
+            padding: 12px 15px; /* Reduced padding */
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px; /* Slightly smaller */
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 6px; /* Reduced gap */
         }
 
         #startButton {
@@ -230,32 +231,31 @@
             transform: none;
         }
 
-
         .activity-log {
-            margin-top: 30px;
+            margin-top: 25px; /* Reduced margin */
             text-align: left;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             background-color: #fdfdfd;
-            padding: 15px;
-            max-height: 200px;
+            padding: 12px; /* Reduced padding */
+            max-height: 180px; /* Reduced max-height for mobile */
             overflow-y: auto;
-            font-size: 14px;
+            font-size: 13px; /* Smaller font size */
             color: var(--light-text-color);
-            white-space: pre-wrap; /* Preserve line breaks */
-            word-break: break-all; /* Break long words */
+            white-space: pre-wrap;
+            word-break: break-all;
             position: relative;
         }
 
         .activity-log h3 {
             margin-top: 0;
             color: var(--text-color);
-            font-size: 16px;
-            margin-bottom: 10px;
+            font-size: 15px; /* Slightly smaller */
+            margin-bottom: 8px; /* Reduced margin */
         }
 
         .log-entry {
-            margin-bottom: 5px;
+            margin-bottom: 4px; /* Reduced margin */
             line-height: 1.4;
         }
 
@@ -265,7 +265,7 @@
 
         .progress-bar-container {
             width: 100%;
-            height: 10px;
+            height: 8px; /* Thinner progress bar */
             background-color: #e0e0e0;
             border-radius: 5px;
             margin-top: 15px;
@@ -281,14 +281,14 @@
         }
 
         .progress-text {
-            font-size: 14px;
+            font-size: 13px; /* Smaller font size */
             color: var(--light-text-color);
             margin-top: 5px;
         }
 
         .developer-info {
-            margin-top: 30px;
-            font-size: 13px;
+            margin-top: 25px; /* Reduced margin */
+            font-size: 12px; /* Smaller font size */
             color: var(--light-text-color);
         }
 
@@ -302,27 +302,25 @@
             text-decoration: underline;
         }
 
-        /* SVG icons */
         .icon {
-            width: 18px;
-            height: 18px;
+            width: 16px; /* Smaller icons */
+            height: 16px; /* Smaller icons */
             vertical-align: middle;
-            fill: currentColor; /* Use button's text color */
+            fill: currentColor;
         }
 
-        /* Dynamic Theme Settings */
         .theme-settings {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px; /* Adjusted position */
+            right: 10px; /* Adjusted position */
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px; /* Reduced gap */
         }
 
         .theme-settings button {
-            width: 30px;
-            height: 30px;
+            width: 25px; /* Smaller buttons */
+            height: 25px; /* Smaller buttons */
             border-radius: 50%;
             border: 2px solid transparent;
             padding: 0;
@@ -331,14 +329,52 @@
         }
 
         .theme-settings button.active {
-            border-color: var(--primary-color); /* Highlight active theme */
+            border-color: var(--primary-color);
         }
         #themePurple { background-color: #6a0dad; }
         #themeBlue { background-color: #007bff; }
         #themeGreen { background-color: #28a745; }
         #themeRed { background-color: #dc3545; }
 
+        /* Media queries for larger screens (optional, but good practice) */
+        @media (min-width: 600px) {
+            body {
+                padding: 30px;
+                align-items: center; /* Center vertically on larger screens */
+            }
+            .container {
+                max-width: 450px;
+                padding: 30px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .header-title { font-size: 28px; }
+            .header-subtitle { font-size: 14px; margin-bottom: 25px; }
+            .form-group { margin-bottom: 20px; }
+            label { font-size: 15px; }
+            input[type="text"], input[type="number"] { padding: 12px; font-size: 16px; }
+            .input-with-label img { width: 20px; margin-right: 10px; }
+            .input-with-label input { padding: 12px 0; }
+            .slider-group { margin-bottom: 25px; }
+            .slider-label { font-size: 15px; }
+            .slider-value { font-size: 18px; }
+            input[type="range"] { height: 8px; }
+            input[type="range"]::-webkit-slider-thumb, input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; }
+            .action-buttons { gap: 15px; margin-top: 25px; }
+            button { padding: 14px 20px; font-size: 16px; gap: 8px; }
+            .activity-log { margin-top: 30px; padding: 15px; max-height: 200px; font-size: 14px; }
+            .activity-log h3 { font-size: 16px; margin-bottom: 10px; }
+            .log-entry { margin-bottom: 5px; }
+            .progress-bar-container { height: 10px; margin-top: 15px; }
+            .progress-text { font-size: 14px; }
+            .developer-info { margin-top: 30px; font-size: 13px; }
+            .icon { width: 18px; height: 18px; }
+            .theme-settings { top: 15px; right: 15px; gap: 10px; }
+            .theme-settings button { width: 30px; height: 30px; }
+        }
     </style>
+    <!-- Adsterra Ad Code -->
+    <script type='text/javascript' src='//pl27801016.revenuecpmgate.com/ff/c2/77/ffc2777f710e0fe3561fc39f581583bd.js'></script>
 </head>
 <body>
     <div class="container">
@@ -356,7 +392,7 @@
             <label for="phoneNumber">Target Phone Number</label>
             <div class="input-with-label">
                 <img src="https://flagcdn.com/bd.svg" alt="BD Flag"> <!-- Bangladesh Flag -->
-                <input type="text" id="phoneNumber" placeholder="e.g., 01712345678" pattern="[0-9]+" title="Only numbers are allowed">
+                <input type="text" id="phoneNumber" placeholder="e.g., 017xxxxxxxx" pattern="[0-9]+" title="Only numbers are allowed">
             </div>
         </div>
 
