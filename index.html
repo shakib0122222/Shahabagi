@@ -1,235 +1,90 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAKIB SMS BOMBER</title>
-    <style id="dynamicStyle">
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #667eea);
-            background-size: 200% 200%;
-            animation: gradientAnimation 10s ease infinite;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .container {
-            max-width: 90%;
-            width: 400px;
-            margin: 20px auto;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
-        }
-        h1 {
-            font-size: 2em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
-        }
-        .warning {
-            background: rgba(255, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .start-btn {
-            background: linear-gradient(135deg, #ff3e3e, #ff6b6b);
-            color: white;
-        }
-        .start-btn:hover {
-            background: linear-gradient(135deg, #ff1e1e, #ff5252);
-            transform: scale(1.05);
-        }
-        .theme-btn {
-            background: linear-gradient(135deg, #4ecdc4, #1a8cff);
-            color: white;
-            width: auto;
-            padding: 8px 16px;
-            margin-top: 10px;
-        }
-        .theme-btn:hover {
-            background: linear-gradient(135deg, #1a8cff, #4ecdc4);
-            transform: scale(1.05);
-        }
-        #log {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            height: 200px;
-            overflow-y: auto;
-            text-align: left;
-            font-family: monospace;
-            font-size: 0.9em;
-            white-space: pre-wrap;
-        }
-        .success { color: #00ff00; }
-        .error { color: #ff4444; }
-        .loading { color: #ffeb3b; }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.8);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            input, button {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>🔥 SAKIB SMS BOMBER 🔥</h1>
-        <div class="warning">
-            <strong>⚠️ সতর্কতা:</strong> এটি কোনো খারাপ কাজে ব্যবহার করবেন না!
+        <div class="header">
+            <span class="theme-settings"><i class="fas fa-cog"></i> Theme Settings</span>
         </div>
-        
-        <input type="tel" id="phone" placeholder="মোবাইল নম্বর (যেমন: 01712345678)" maxlength="11" />
-        <input type="number" id="amount" placeholder="কতবার SMS (1-10)" value="1" min="1" max="10" />
-        
-        <button class="start-btn" onclick="startBomb()">🚀 Start Bombing</button>
-        <button class="theme-btn" onclick="changeTheme()">🎨 থিম চেঞ্জ</button>
-        
-        <div id="log">লগ: প্রস্তুত। API রেসপন্স এখানে দেখাবে...</div>
-        <div class="footer">Developed by SAKIB HOSSAIN</div>
+        <div class="card">
+            <h1 class="title">SAKIB SMS BOMBER</h1>
+            <p class="subtitle">সামান্য মজা করুন</p>
+
+            <div class="input-group">
+                <label for="target-phone">Target Phone Number</label>
+                <div class="phone-input-wrapper">
+                    <span class="country-code">+880</span>
+                    <input type="tel" id="target-phone" placeholder="XXX XXXX XXX" maxlength="11" pattern="[0-9]{11}">
+                    <i class="fas fa-mobile-alt icon"></i>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="sms-count">SMS Count</label>
+                <div class="slider-wrapper">
+                    <input type="range" id="sms-count-slider" min="1" max="100" value="1">
+                    <span id="sms-count-display" class="slider-value">1</span>
+                </div>
+                <div class="count-presets">
+                    <button class="preset-btn" data-count="1">1</button>
+                    <button class="preset-btn" data-count="5">5</button>
+                    <button class="preset-btn" data-count="10">10</button>
+                    <button class="preset-btn" data-count="25">25</button>
+                    <button class="preset-btn" data-count="50">50</button>
+                    <button class="preset-btn" data-count="100">100</button>
+                    <span class="preset-label">Count</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="delay-seconds">Delay (seconds)</label>
+                <div class="slider-wrapper">
+                    <input type="range" id="delay-slider" min="0.1" max="60" step="0.1" value="2.5">
+                    <span id="delay-display" class="slider-value">2.5</span>
+                </div>
+            </div>
+
+            <div class="input-group toggle-group">
+                <label for="custom-message-toggle">Custom Message (Optional)</label>
+                <label class="switch">
+                    <input type="checkbox" id="custom-message-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="input-group custom-message-field hidden">
+                <textarea id="custom-message" placeholder="Your custom message here..."></textarea>
+            </div>
+
+
+            <div class="activity-log-container">
+                <label>Activity Log</label>
+                <div class="activity-log" id="activity-log">
+                    <div class="log-item">
+                        <i class="fas fa-info-circle log-icon"></i>
+                        <span class="log-text">Ready to start bombing.</span>
+                    </div>
+                </div>
+                <div class="progress-indicator">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <span id="progress-text">0% Done</span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="start-attack-btn" class="start-btn"><i class="fas fa-rocket"></i> Start Attack</button>
+                <button id="stop-attack-btn" class="stop-btn" disabled><i class="fas fa-stop"></i> Stop</button>
+            </div>
+        </div>
     </div>
+    <div class="developer-info">Developed By SAKIB HOSSAIN</div>
 
-    <script>
-        let currentTheme = 0;
-        const themes = [
-            // Animated Gradient
-            `body { background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #667eea); background-size: 200% 200%; animation: gradientAnimation 10s ease infinite; }`,
-            // Dark Mode
-            `body { background: #121212; color: #fff; animation: none; } .container { background: rgba(255,255,255,0.05); }`,
-            // Light Mode
-            `body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: #333; animation: none; } .container { background: rgba(0,0,0,0.1); }`
-        ];
-
-        function updateStyle(newStyle) {
-            const style = document.getElementById('dynamicStyle');
-            style.innerHTML = `
-                @keyframes gradientAnimation {
-                    0% { background-position: 0% 50%; }
-                    50% { background-position: 100% 50%; }
-                    100% { background-position: 0% 50%; }
-                }
-                body { font-family: 'Arial', sans-serif; ${newStyle} text-align: center; padding: 20px; margin: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-                .container { max-width: 90%; width: 400px; margin: 20px auto; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-                .container:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.3); }
-                h1 { font-size: 2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); margin-bottom: 10px; }
-                .warning { background: rgba(255, 0, 0, 0.3); padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; line-height: 1.4; }
-                input { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; font-size: 1em; text-align: center; background: rgba(255, 255, 255, 0.2); color: white; }
-                input::placeholder { color: rgba(255, 255, 255, 0.7); }
-                button { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; transition: all 0.3s ease; }
-                .start-btn { background: linear-gradient(135deg, #ff3e3e, #ff6b6b); color: white; }
-                .start-btn:hover { background: linear-gradient(135deg, #ff1e1e, #ff5252); transform: scale(1.05); }
-                .theme-btn { background: linear-gradient(135deg, #4ecdc4, #1a8cff); color: white; width: auto; padding: 8px 16px; margin-top: 10px; }
-                .theme-btn:hover { background: linear-gradient(135deg, #1a8cff, #4ecdc4); transform: scale(1.05); }
-                #log { background: rgba(0, 0, 0, 0.4); padding: 15px; border-radius: 8px; margin-top: 20px; height: 200px; overflow-y: auto; text-align: left; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; }
-                .success { color: #00ff00; } .error { color: #ff4444; } .loading { color: #ffeb3b; }
-                .footer { margin-top: 20px; font-size: 0.8em; color: rgba(255, 255, 255, 0.8); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
-                @media (max-width: 600px) {
-                    .container { width: 90%; padding: 20px; }
-                    h1 { font-size: 1.5em; }
-                    input, button { font-size: 0.9em; }
-                }
-            `;
-        }
-
-        function changeTheme() {
-            currentTheme = (currentTheme + 1) % themes.length;
-            updateStyle(themes[currentTheme]);
-        }
-
-        async function startBomb() {
-            const phone = document.getElementById('phone').value.trim();
-            const amount = parseInt(document.getElementById('amount').value);
-            const log = document.getElementById('log');
-
-            if (!phone || !amount || amount < 1 || amount > 10 || !phone.startsWith('01') || phone.length !== 11) {
-                log.innerHTML += '<span class="error">[ERROR] সঠিক নম্বর দিন (যেমন: 01712345678) এবং amount 1-10 এর মধ্যে।</span>\n';
-                log.scrollTop = log.scrollHeight;
-                return;
-            }
-
-            log.innerHTML += `<span class="loading">[START] ${phone} এ ${amount} বার bombing শুরু...</span>\n`;
-            log.scrollTop = log.scrollHeight;
-
-            try {
-                const apiUrl = `https://www.gajarbotol.site/apis/boom.php?phone=${phone}&amount=${amount}`;
-                const response = await fetch(apiUrl);
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                log.innerHTML += `[RESPONSE] ${JSON.stringify(data, null, 2)}\n`;
-
-                if (data.success) {
-                    log.innerHTML += `<span class="success">[SUCCESS] ${data.total_requests_sent || amount} টি SMS পাঠানো হয়েছে! (API অনুসারে)</span>\n`;
-                } else {
-                    log.innerHTML += `<span class="error">[FAILED] ${data.message || 'Unknown error'}</span>\n`;
-                }
-            } catch (error) {
-                log.innerHTML += `<span class="error">[ERROR] ${error.message}. API চেক করুন।</span>\n`;
-            }
-
-            log.scrollTop = log.scrollHeight;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
