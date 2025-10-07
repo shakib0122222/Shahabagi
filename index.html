@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAKIB SMS BOMBER</title>
     <style id="dynamicStyle">
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         body {
             font-family: 'Arial', sans-serif;
-            background: #141414;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #667eea);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite;
             color: white;
             text-align: center;
             padding: 20px;
@@ -16,22 +23,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            transition: all 0.5s ease;
         }
         .container {
             max-width: 90%;
             width: 400px;
             margin: 20px auto;
-            background: rgba(40, 40, 40, 0.9);
+            background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 15px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
         }
         h1 {
             font-size: 2em;
@@ -54,17 +60,11 @@
             border-radius: 8px;
             font-size: 1em;
             text-align: center;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        input:focus {
-            outline: none;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             background: rgba(255, 255, 255, 0.2);
+            color: white;
         }
         input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
         }
         button {
             width: 100%;
@@ -96,7 +96,7 @@
             transform: scale(1.05);
         }
         #log {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             padding: 15px;
             border-radius: 8px;
             margin-top: 20px;
@@ -134,7 +134,7 @@
     <div class="container">
         <h1>🔥 SAKIB SMS BOMBER 🔥</h1>
         <div class="warning">
-            <strong>⚠️ সতর্কতা:</strong> এটি কোনো খারাপ কাজে ব্যবহার করবেন না! 
+            <strong>⚠️ সতর্কতা:</strong> এটি কোনো খারাপ কাজে ব্যবহার করবেন না!
         </div>
         
         <input type="tel" id="phone" placeholder="মোবাইল নম্বর (যেমন: 01712345678)" maxlength="11" />
@@ -150,31 +150,35 @@
     <script>
         let currentTheme = 0;
         const themes = [
-            // Dark Mode (Default)
-            `body { background: #141414; color: #fff; } .container { background: rgba(40, 40, 40, 0.9); }`,
+            // Animated Gradient
+            `body { background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #667eea); background-size: 200% 200%; animation: gradientAnimation 10s ease infinite; }`,
+            // Dark Mode
+            `body { background: #121212; color: #fff; animation: none; } .container { background: rgba(255,255,255,0.05); }`,
             // Light Mode
-            `body { background: #f0f0f0; color: #333; } .container { background: rgba(255, 255, 255, 0.9); } input { background: rgba(0, 0, 0, 0.1); color: #333; } input::placeholder { color: rgba(0, 0, 0, 0.6); }`,
-            // Minimal Gray Mode
-            `body { background: #2c2c2c; color: #fff; } .container { background: rgba(60, 60, 60, 0.9); }`
+            `body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: #333; animation: none; } .container { background: rgba(0,0,0,0.1); }`
         ];
 
         function updateStyle(newStyle) {
             const style = document.getElementById('dynamicStyle');
             style.innerHTML = `
-                body { font-family: 'Arial', sans-serif; ${newStyle} text-align: center; padding: 20px; margin: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; transition: all 0.5s ease; }
-                .container { max-width: 90%; width: 400px; margin: 20px auto; background: rgba(40, 40, 40, 0.9); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-                .container:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.2); }
+                @keyframes gradientAnimation {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+                body { font-family: 'Arial', sans-serif; ${newStyle} text-align: center; padding: 20px; margin: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+                .container { max-width: 90%; width: 400px; margin: 20px auto; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+                .container:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.3); }
                 h1 { font-size: 2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); margin-bottom: 10px; }
                 .warning { background: rgba(255, 0, 0, 0.3); padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9em; line-height: 1.4; }
-                input { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; font-size: 1em; text-align: center; background: rgba(255, 255, 255, 0.15); color: white; transition: all 0.3s ease; }
-                input:focus { outline: none; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.2); }
-                input::placeholder { color: rgba(255, 255, 255, 0.6); }
+                input { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; font-size: 1em; text-align: center; background: rgba(255, 255, 255, 0.2); color: white; }
+                input::placeholder { color: rgba(255, 255, 255, 0.7); }
                 button { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; transition: all 0.3s ease; }
                 .start-btn { background: linear-gradient(135deg, #ff3e3e, #ff6b6b); color: white; }
                 .start-btn:hover { background: linear-gradient(135deg, #ff1e1e, #ff5252); transform: scale(1.05); }
                 .theme-btn { background: linear-gradient(135deg, #4ecdc4, #1a8cff); color: white; width: auto; padding: 8px 16px; margin-top: 10px; }
                 .theme-btn:hover { background: linear-gradient(135deg, #1a8cff, #4ecdc4); transform: scale(1.05); }
-                #log { background: rgba(0, 0, 0, 0.5); padding: 15px; border-radius: 8px; margin-top: 20px; height: 200px; overflow-y: auto; text-align: left; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; }
+                #log { background: rgba(0, 0, 0, 0.4); padding: 15px; border-radius: 8px; margin-top: 20px; height: 200px; overflow-y: auto; text-align: left; font-family: monospace; font-size: 0.9em; white-space: pre-wrap; }
                 .success { color: #00ff00; } .error { color: #ff4444; } .loading { color: #ffeb3b; }
                 .footer { margin-top: 20px; font-size: 0.8em; color: rgba(255, 255, 255, 0.8); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
                 @media (max-width: 600px) {
