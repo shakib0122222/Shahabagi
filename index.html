@@ -4,87 +4,559 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAKIB SMS BOMBER</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@404&display=swap');
+
+        :root {
+            --primary-color: #6a0dad; /* Purple for main elements */
+            --secondary-color: #ff007f; /* Pink for accents/stop button */
+            --background-color: #f0f2f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --light-text-color: #666666;
+            --border-color: #e0e0e0;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --info-color: #007bff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: var(--light-text-color);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--text-color);
+            background-color: #fdfdfd;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+            outline: none;
+        }
+
+        .input-with-label {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #fdfdfd;
+            padding: 0 12px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-with-label:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+        }
+        .input-with-label img {
+            width: 20px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .input-with-label input {
+            flex-grow: 1;
+            border: none;
+            padding: 12px 0;
+            background: transparent;
+        }
+        .input-with-label input:focus {
+            box-shadow: none;
+        }
+
+
+        .slider-group {
+            margin-bottom: 25px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .slider-value {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: grab;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: grab;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #startButton {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+        }
+
+        #startButton:hover {
+            background-color: #5a0ca0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(106, 13, 173, 0.4);
+        }
+
+        #stopButton {
+            background-color: var(--secondary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+
+        #stopButton:hover {
+            background-color: #cc0066;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4);
+        }
+
+        #stopButton:disabled {
+            background-color: #e0e0e0;
+            color: #a0a0a0;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        #startButton:disabled {
+            background-color: #e0e0e0;
+            color: #a0a0a0;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+
+        .activity-log {
+            margin-top: 30px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #fdfdfd;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: var(--light-text-color);
+            white-space: pre-wrap; /* Preserve line breaks */
+            word-break: break-all; /* Break long words */
+            position: relative;
+        }
+
+        .activity-log h3 {
+            margin-top: 0;
+            color: var(--text-color);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .log-success { color: var(--success-color); }
+        .log-error { color: var(--error-color); }
+        .log-info { color: var(--info-color); }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--light-text-color);
+            margin-top: 5px;
+        }
+
+        .developer-info {
+            margin-top: 30px;
+            font-size: 13px;
+            color: var(--light-text-color);
+        }
+
+        .developer-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .developer-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* SVG icons */
+        .icon {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            fill: currentColor; /* Use button's text color */
+        }
+
+        /* Dynamic Theme Settings */
+        .theme-settings {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-settings button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            padding: 0;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .theme-settings button.active {
+            border-color: var(--primary-color); /* Highlight active theme */
+        }
+        #themePurple { background-color: #6a0dad; }
+        #themeBlue { background-color: #007bff; }
+        #themeGreen { background-color: #28a745; }
+        #themeRed { background-color: #dc3545; }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <span class="theme-settings"><i class="fas fa-cog"></i> Theme Settings</span>
+        <div class="theme-settings">
+            <button id="themePurple" data-primary="#6a0dad" data-secondary="#ff007f" class="active"></button>
+            <button id="themeBlue" data-primary="#007bff" data-secondary="#fd7e14"></button>
+            <button id="themeGreen" data-primary="#28a745" data-secondary="#ffc107"></button>
+            <button id="themeRed" data-primary="#dc3545" data-secondary="#6f42c1"></button>
         </div>
-        <div class="card">
-            <h1 class="title">SAKIB SMS BOMBER</h1>
-            <p class="subtitle">সামান্য মজা করুন</p>
 
-            <div class="input-group">
-                <label for="target-phone">Target Phone Number</label>
-                <div class="phone-input-wrapper">
-                    <span class="country-code">+880</span>
-                    <input type="tel" id="target-phone" placeholder="XXX XXXX XXX" maxlength="11" pattern="[0-9]{11}">
-                    <i class="fas fa-mobile-alt icon"></i>
-                </div>
-            </div>
+        <h1 class="header-title">SAKIB SMS BOMBER</h1>
+        <p class="header-subtitle">সামান্য মজা করুন</p>
 
-            <div class="input-group">
-                <label for="sms-count">SMS Count</label>
-                <div class="slider-wrapper">
-                    <input type="range" id="sms-count-slider" min="1" max="100" value="1">
-                    <span id="sms-count-display" class="slider-value">1</span>
-                </div>
-                <div class="count-presets">
-                    <button class="preset-btn" data-count="1">1</button>
-                    <button class="preset-btn" data-count="5">5</button>
-                    <button class="preset-btn" data-count="10">10</button>
-                    <button class="preset-btn" data-count="25">25</button>
-                    <button class="preset-btn" data-count="50">50</button>
-                    <button class="preset-btn" data-count="100">100</button>
-                    <span class="preset-label">Count</span>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label for="delay-seconds">Delay (seconds)</label>
-                <div class="slider-wrapper">
-                    <input type="range" id="delay-slider" min="0.1" max="60" step="0.1" value="2.5">
-                    <span id="delay-display" class="slider-value">2.5</span>
-                </div>
-            </div>
-
-            <div class="input-group toggle-group">
-                <label for="custom-message-toggle">Custom Message (Optional)</label>
-                <label class="switch">
-                    <input type="checkbox" id="custom-message-toggle">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <div class="input-group custom-message-field hidden">
-                <textarea id="custom-message" placeholder="Your custom message here..."></textarea>
-            </div>
-
-
-            <div class="activity-log-container">
-                <label>Activity Log</label>
-                <div class="activity-log" id="activity-log">
-                    <div class="log-item">
-                        <i class="fas fa-info-circle log-icon"></i>
-                        <span class="log-text">Ready to start bombing.</span>
-                    </div>
-                </div>
-                <div class="progress-indicator">
-                    <div class="progress-bar" id="progress-bar"></div>
-                    <span id="progress-text">0% Done</span>
-                </div>
-            </div>
-
-            <div class="button-group">
-                <button id="start-attack-btn" class="start-btn"><i class="fas fa-rocket"></i> Start Attack</button>
-                <button id="stop-attack-btn" class="stop-btn" disabled><i class="fas fa-stop"></i> Stop</button>
+        <div class="form-group">
+            <label for="phoneNumber">Target Phone Number</label>
+            <div class="input-with-label">
+                <img src="https://flagcdn.com/bd.svg" alt="BD Flag"> <!-- Bangladesh Flag -->
+                <input type="text" id="phoneNumber" placeholder="e.g., 01712345678" pattern="[0-9]+" title="Only numbers are allowed">
             </div>
         </div>
+
+        <div class="slider-group">
+            <div class="slider-label">
+                <label for="smsCount">SMS Count</label>
+                <span id="smsCountValue" class="slider-value">1</span>
+            </div>
+            <input type="range" id="smsCount" min="1" max="100" value="1">
+        </div>
+
+        <div class="slider-group">
+            <div class="slider-label">
+                <label for="delaySeconds">Delay (seconds)</label>
+                <span id="delaySecondsValue" class="slider-value">1</span>
+            </div>
+            <input type="range" id="delaySeconds" min="1" max="60" value="1">
+        </div>
+
+        <div class="action-buttons">
+            <button id="startButton">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M7 6l10 6-10 6V6z"/>
+                </svg>
+                Start Attack
+            </button>
+            <button id="stopButton" disabled>
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M6 6h12v12H6z"/>
+                </svg>
+                Stop
+            </button>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">0% Done (0/0 sent)</div>
+
+        <div class="activity-log">
+            <h3>Activity Log</h3>
+            <div id="logContent"></div>
+        </div>
+
+        <p class="developer-info">Developed By <a href="#" target="_blank">SAKIB HOSSAIN</a></p>
     </div>
-    <div class="developer-info">Developed By SAKIB HOSSAIN</div>
 
-    <script src="script.js"></script>
+    <script>
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        const smsCountSlider = document.getElementById('smsCount');
+        const smsCountValue = document.getElementById('smsCountValue');
+        const delaySecondsSlider = document.getElementById('delaySeconds');
+        const delaySecondsValue = document.getElementById('delaySecondsValue');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const logContent = document.getElementById('logContent');
+        const themeButtons = document.querySelectorAll('.theme-settings button');
+
+        const API_BASE_URL = "https://www.gajarbotol.site/apis/boom.php";
+
+        let isAttacking = false;
+        let requestCount = 0;
+        let intervalId = null;
+        let totalSmsToSend = 0;
+
+        // --- Theme Switching Logic ---
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const primary = button.dataset.primary;
+                const secondary = button.dataset.secondary;
+
+                document.documentElement.style.setProperty('--primary-color', primary);
+                document.documentElement.style.setProperty('--secondary-color', secondary);
+            });
+        });
+
+        // --- Slider Value Update ---
+        smsCountSlider.addEventListener('input', () => {
+            smsCountValue.textContent = smsCountSlider.value;
+        });
+
+        delaySecondsSlider.addEventListener('input', () => {
+            delaySecondsValue.textContent = delaySecondsSlider.value;
+        });
+
+        // --- Logging Function ---
+        function addLog(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.classList.add('log-entry');
+            logEntry.classList.add(`log-${type}`);
+            logEntry.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContent.prepend(logEntry); // Add to top
+
+            // Keep only a certain number of logs (optional)
+            if (logContent.children.length > 50) {
+                logContent.removeChild(logContent.lastChild);
+            }
+        }
+
+        // --- Update Progress Bar ---
+        function updateProgress() {
+            const progress = (requestCount / totalSmsToSend) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${progress.toFixed(0)}% Done (${requestCount}/${totalSmsToSend} sent)`;
+            if (requestCount >= totalSmsToSend) {
+                progressText.textContent += " - Completed!";
+                stopAttack();
+            }
+        }
+
+        // --- Send SMS Function ---
+        async function sendSms() {
+            if (!isAttacking || requestCount >= totalSmsToSend) {
+                stopAttack();
+                return;
+            }
+
+            const phoneNumber = phoneNumberInput.value.trim();
+            const amount = 1; // Always send 1 SMS per API call as per API example
+
+            const url = `${API_BASE_URL}?phone=${phoneNumber}&amount=${amount}`;
+
+            try {
+                addLog(`Sending SMS to ${phoneNumber}...`, 'info');
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.success) {
+                    addLog(`Success: SMS sent to ${data.phone}. Attempts: ${data.attempts}, Total Sent: ${data.total_requests_sent}`, 'success');
+                } else {
+                    addLog(`Error: ${data.message || 'Unknown error.'}`, 'error');
+                }
+            } catch (error) {
+                addLog(`Network Error: Could not reach API. ${error.message}`, 'error');
+            } finally {
+                requestCount++;
+                updateProgress();
+            }
+        }
+
+        // --- Start Attack ---
+        startButton.addEventListener('click', () => {
+            const phoneNumber = phoneNumberInput.value.trim();
+            const smsCount = parseInt(smsCountSlider.value);
+            const delay = parseInt(delaySecondsSlider.value) * 1000; // Convert to milliseconds
+
+            if (!phoneNumber || !/^\d+$/.test(phoneNumber)) {
+                addLog("Error: Please enter a valid phone number (digits only).", 'error');
+                return;
+            }
+            if (smsCount <= 0) {
+                addLog("Error: SMS count must be at least 1.", 'error');
+                return;
+            }
+
+            isAttacking = true;
+            requestCount = 0;
+            totalSmsToSend = smsCount;
+            logContent.innerHTML = ''; // Clear previous logs
+            addLog("Attack started...", 'info');
+
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            phoneNumberInput.disabled = true;
+            smsCountSlider.disabled = true;
+            delaySecondsSlider.disabled = true;
+
+            updateProgress();
+            sendSms(); // Send first SMS immediately
+            intervalId = setInterval(sendSms, delay);
+        });
+
+        // --- Stop Attack ---
+        stopButton.addEventListener('click', stopAttack);
+
+        function stopAttack() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+            isAttacking = false;
+            addLog("Attack stopped.", 'info');
+
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            phoneNumberInput.disabled = false;
+            smsCountSlider.disabled = false;
+            delaySecondsSlider.disabled = false;
+        }
+
+        // Initial setup
+        smsCountValue.textContent = smsCountSlider.value;
+        delaySecondsValue.textContent = delaySecondsSlider.value;
+        addLog("Enter phone number, SMS count, and delay to start.", 'info');
+        updateProgress(); // Initialize progress text
+    </script>
 </body>
 </html>
